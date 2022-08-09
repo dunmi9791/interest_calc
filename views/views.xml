@@ -38,15 +38,27 @@
                   <!-- Add your fields or attributes here -->
                   <page name="contract_inputs" string="Contractual Inputs">
                             <group name="container_row_int">
-                                <group string="Interest" name="interest" priority="1">
                                     <field name="interest_rate"/>
-
-                                </group>
 
                             </group>
                         </page>
+                  <page name="interest_calculations" string="Interests">
+                                <field name="interest_ids"/>
+                        </page>
               </xpath>
 
+          </field>
+      </record>
+      <record id="interest_calc_view_tree" model="ir.ui.view">
+          <field name="name">interest_calc_view_tree</field>
+          <field name="model">interest.calculation</field>
+          <field name="arch" type="xml">
+              <tree string="Interest Calculation">
+                  <field name="name"/>
+                  <field name="nibor_rate"/>
+                  <field name="interest_rate"/>
+                  <field name="interest"/>
+              </tree>
           </field>
       </record>
     <!-- explicit list view definition -->
