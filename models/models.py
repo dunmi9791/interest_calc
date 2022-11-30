@@ -35,7 +35,7 @@ class InterestRate(models.Model):
     def _get_rate(self):
         self.interest_total_rate = self.nibor_rate + self.add_rate
 
-    @api.one
+    # @api.one
     def _get_latest_rate(self):
         rates = self.env['nibor.rate'].search([])[-1]
         self.nibor_rate = rates.rate
@@ -75,7 +75,7 @@ class InterestCalculations(models.Model):
         required=False)
     # add_rate = fields.Float(digits=(12, 6), default=1.0, string='Additional Rate')
 
-    @api.multi
+    # @api.multi
     def create_interest(self):
         disco = self.env['res.partner'].search([('customer', '=', True),])
         disco_outstanding = []
@@ -104,7 +104,7 @@ class InterestCalculations(models.Model):
     #         previous_record = balance_ids[0]['cumulative_interest'] if balance_ids else 0
     #         self.previous_balance = previous_record
 
-    @api.one
+    # @api.one
     @api.depends('previous_balance')
     def cumulative_interest(self):
         self.cumulative_interest = self.previous_balance + self.interest
